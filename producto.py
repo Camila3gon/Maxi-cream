@@ -168,3 +168,122 @@ lista.append(Producto(3, "Ensalada de frutas", "Ensalada", 15000, 10))
 
 for obj in lista:
     obj.descripcion()
+
+# ---------- Taller 4: CRUD completo ----------
+
+inventario = []
+
+# CREAR (al menos 2 objetos)
+inventario.append(Producto(1, "Helado de chocolate", "Helado", 8000, 20))
+inventario.append(Producto(2, "Malteada de fresa", "Malteada", 12000, 15))
+
+print("=== CREAR ===")
+for p in inventario:
+    p.descripcion()
+
+# LEER (ya se hizo arriba con el for, pero lo dejamos explícito)
+print("\n=== LEER ===")
+for p in inventario:
+    p.descripcion()
+
+# ACTUALIZAR (buscar uno y cambiarle un dato)
+print("\n=== ACTUALIZAR ===")
+for p in inventario:
+    if p.nombre == "Helado de chocolate":
+        p.actualizar_producto(precio=9000)
+
+print("Lista después de actualizar:")
+for p in inventario:
+    p.descripcion()
+
+# BORRAR (eliminar uno de la lista)
+print("\n=== BORRAR ===")
+for p in inventario:
+    if p.nombre == "Malteada de fresa":
+        inventario.remove(p)
+        break
+
+print("Lista después de borrar:")
+for p in inventario:
+    p.descripcion()
+
+# ---------- Taller 5: Herencia ----------
+
+class Helado(Producto):
+    def __init__(self, codigo, nombre, categoria, precio, cantidad_disponible, sabor):
+        super().__init__(codigo, nombre, categoria, precio, cantidad_disponible)  # arma la parte de Producto
+        self.sabor = sabor  # atributo propio
+
+    def agregar_topping(self, topping):  # método propio
+        print(f"Se agregó '{topping}' al helado de {self.sabor}.")
+
+
+class Bebida(Producto):
+    def __init__(self, codigo, nombre, categoria, precio, cantidad_disponible, tamano):
+        super().__init__(codigo, nombre, categoria, precio, cantidad_disponible)  # arma la parte de Producto
+        self.tamano = tamano  # atributo propio
+
+    def servir(self):  # método propio
+        print(f"Sirviendo {self.nombre}, tamaño {self.tamano}.")
+
+
+# Crear un objeto de cada subclase
+helado1 = Helado(4, "Helado de vainilla", "Helado", 8000, 20, "Vainilla")
+bebida1 = Bebida(5, "Malteada de fresa", "Malteada", 12000, 15, "Grande")
+
+print("\n=== TALLER 5: HELADO ===")
+helado1.descripcion()             # heredado de Producto
+helado1.agregar_topping("chispas de colores")  # propio de Helado
+
+print("\n=== TALLER 5: BEBIDA ===")
+bebida1.descripcion()             # heredado de Producto
+bebida1.servir()                  # propio de Bebida
+
+# ---------- Taller 6: CRUD de Clientes ----------
+
+class Cliente:
+    def __init__(self, nombre, telefono, cedula):
+        self.nombre = nombre
+        self._telefono = telefono  # encapsulado
+        self.cedula = cedula
+        self.compras_totales = 0
+
+    def __str__(self):
+        return f"{self.nombre} (CC {self.cedula}) - compras: ${self.compras_totales}"
+
+
+clientes = []
+
+# CREAR
+clientes.append(Cliente("Laura Gómez", "3001112233", "1020304050"))
+clientes.append(Cliente("Pedro Ruiz", "3009998877", "1030405060"))
+
+print("=== CREAR ===")
+for c in clientes:
+    print(c)
+
+# LEER
+print("\n=== LEER ===")
+for c in clientes:
+    print(c)
+
+# ACTUALIZAR
+print("\n=== ACTUALIZAR ===")
+for c in clientes:
+    if c.cedula == "1020304050":
+        c.compras_totales += 45000
+
+print("Lista después de actualizar:")
+for c in clientes:
+    print(c)
+
+# BORRAR
+print("\n=== BORRAR ===")
+for c in clientes:
+    if c.cedula == "1030405060":
+        clientes.remove(c)
+        break
+
+print("Lista después de borrar:")
+for c in clientes:
+    print(c)
