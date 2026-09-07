@@ -158,3 +158,13 @@ pedido1.agregar_producto(helado, 2)
 pedido1.agregar_producto(malteada, 1)
 pedido1.confirmar_pedido()
 Pedido.consultar_pedido(101)
+
+# ---------- Taller 3: objetos en una lista ----------
+
+lista = []
+lista.append(Producto(1, "Helado de chocolate", "Helado", 8000, 20))
+lista.append(Producto(2, "Malteada de fresa", "Malteada", 12000, 15))
+lista.append(Producto(3, "Ensalada de frutas", "Ensalada", 15000, 10))
+
+for obj in lista:
+    obj.descripcion()
