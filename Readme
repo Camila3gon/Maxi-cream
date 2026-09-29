@@ -1,27 +1,53 @@
+# Sistema Maxi Cream
 
-Maxi cream
-Negocio
+Proyecto individual de la asignatura **Programación Orientada a Objetos**
+(Uniempresarial), desarrollado a lo largo del semestre con las metodologías
+vistas en **Metodologías y Requerimientos de Software**.
 
-Maxi cream es una heladería y cafetería que ofrece helados, ensaladas de frutas, wafles, cafés, jugos naturales, sodas, malteadas, postres y cocteles.
+## La microempresa
 
-Problema que resuelve
+Maxi Cream es una heladería y cafetería que vende helados, malteadas, cafés,
+waffles, ensaladas de fruta, sodas y cocteles. El sistema busca apoyar la
+operación diaria del negocio: registrar productos y pedidos, calcular el
+total de cada venta, controlar el inventario y generar la factura del
+cliente.
 
-El establecimiento atiende a los clientes de manera presencial y necesita controlar de forma ordenada el registro de productos, la toma de pedidos, el cálculo de totales y el estado de cada pedido, evitando errores al hacerlo manualmente.
+## Qué resuelve el proyecto
 
-Clases y CRUDs
-Producto
+- Registrar el catálogo de productos (código, nombre, categoría, precio,
+  cantidad disponible).
+- Registrar un pedido con varios productos y calcular su valor total.
+- Descontar el inventario al confirmar un pedido, validando que haya stock
+  suficiente.
+- Generar una factura con el detalle del pedido, el total y el método de
+  pago.
 
-Representa cada producto del inventario (código, nombre, categoría, precio, cantidad disponible).
+## Estructura del repositorio
 
-Crear: registrar_producto()
-Leer: consultar_producto(codigo)
-Actualizar: actualizar_producto()
-Eliminar: eliminar_producto()
-Pedido
+```
+├── src/                        # Código fuente del proyecto
+│   ├── taller8_maxicream.py        # Clase Producto con persistencia en SQLite
+│   └── cargar_catalogo_maxicream.py # Carga el catálogo real de Maxi Cream
+├── docs/                       # Talleres y entregables del curso
+├── .github/workflows/ci.yml    # Pipeline de integración continua
+├── Dockerfile                  # Empaquetado de la capa de lógica/datos
+├── requirements.txt            # Dependencias del proyecto
+└── README.md
+```
 
-Representa un pedido realizado por un cliente (código, fecha, hora, productos seleccionados, total, estado).
+## Tecnologías
 
-Crear: registrar_pedido()
-Leer: consultar_pedido(codigo)
-Actualizar: agregar_producto(), eliminar_producto_del_pedido(), calcular_total()
-Eliminar: cancelar_pedido()
+- Python 3.12
+- SQLite (módulo `sqlite3` de la librería estándar)
+- Git y GitHub para control de versiones
+- GitHub Actions para integración continua
+- Docker para empaquetar la capa de lógica y datos
+
+## Cómo correr el proyecto
+
+```bash
+python src/cargar_catalogo_maxicream.py
+```
+
+Esto crea `productos.db` con el catálogo completo de Maxi Cream. El archivo
+se puede inspeccionar con DB Browser for SQLite.
